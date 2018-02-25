@@ -55,7 +55,7 @@ module.exports = {
     },
 
     getMostRecentTestByName: function(req, res) {
-        var name = req.body.query.name;
+        var name = decodeURI(req.body.query.name);        
 
         Test.findOne({ where: {name: name}, sort: 'startTime DESC' }).exec(function(err, test) {
             if (err) console.log(err);
